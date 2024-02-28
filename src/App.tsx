@@ -33,6 +33,8 @@ function App() {
     const selectedProject = projects.find((p) => p.projectName === projectName);
     if (selectedProject) {
       setCurrentProject(selectedProject);
+    } else {
+      setCurrentProject(null);
     }
   };
 
@@ -60,6 +62,32 @@ function App() {
     }
   };
 
+  const handleDeleteExpense = (expenseIndex: number) => {
+    if (currentProject) {
+      // Удаление расхода из списка, используя индекс
+      const updatedExpenses = currentProject.expenses.filter(
+        (_, index) => index !== expenseIndex
+      );
+
+      // Обновление текущего проекта с новым списком расходов
+      setCurrentProject((prevProject) => {
+        if (prevProject) {
+          return {
+            ...prevProject,
+            expenses: updatedExpenses,
+          };
+        }
+        return prevProject;
+      });
+
+      // Дополнительно, можно вызвать метод сервиса для обновления данных на сервере или в локальном хранилище
+      DataService.updateProject(currentProject.projectName, {
+        ...currentProject,
+        expenses: updatedExpenses,
+      });
+    }
+  };
+
   return (
     <div className="App">
       <Header
@@ -77,7 +105,10 @@ function App() {
             onAddExpense={handleAddExpense}
             currentProject={currentProject}
           />
-          <ExpensesTable expenses={currentProject.expenses} />
+          <ExpensesTable
+            expenses={currentProject.expenses}
+            handleDeleteExpense={handleDeleteExpense}
+          />
           <DebtsCalculator
             expenses={currentProject.expenses}
             participants={currentProject.participants}

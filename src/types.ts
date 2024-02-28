@@ -11,6 +11,7 @@ export type Expense = {
   amount: number; // Сумма расхода
   payer: string; // Участник, который оплатил расход
   participants: string[]; // Массив участников, покрывающих расход
+  shares?: Record<string, number>;
 };
 
 // Participants тип представляет массив участников проекта

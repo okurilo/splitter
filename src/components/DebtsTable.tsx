@@ -44,13 +44,13 @@ const DebtsTable: React.FC<DebtsTableProps> = ({ expenses, participants }) => {
 
   return (
     <div>
-      <h3>Debts Table</h3>
+      <h3>Задолженность</h3>
       <table>
         <thead>
           <tr>
-            <th>From</th>
-            <th>To</th>
-            <th>Amount</th>
+            <th>Кто должен</th>
+            <th>Кому должен</th>
+            <th>Сколько должен</th>
           </tr>
         </thead>
         <tbody>

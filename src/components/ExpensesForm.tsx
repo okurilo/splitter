@@ -37,18 +37,18 @@ function ExpensesForm({
         type="text"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        placeholder="Title of the expense"
+        placeholder="Название"
         required
       />
       <input
         type="number"
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
-        placeholder="Amount"
+        placeholder="Стоимость"
         required
       />
       <select value={payer} onChange={(e) => setPayer(e.target.value)} required>
-        <option value="">Select payer</option>
+        <option value="">Оплачено</option>
         {currentProject.participants.map((participant, index) => (
           <option key={index} value={participant}>
             {participant}
@@ -78,10 +78,10 @@ function ExpensesForm({
         type="button"
         onClick={() => setCustomizeParticipants(!customizeParticipants)}
       >
-        Customize Participants
+        Настроить участников
       </button>{" "}
       {/* Кнопка для активации/деактивации кастомизации участников */}
-      <button type="submit">Add Expense</button>
+      <button type="submit">Добавить трату</button>
     </form>
   );
 }

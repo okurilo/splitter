@@ -1,0 +1,57 @@
+.participants-list {
+  display: flex;
+}
+
+.participant-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  margin: 1rem;
+  padding: 1rem;
+  width: 300px;
+  text-align: center;
+}
+
+.participant-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.balance-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.balance-label,
+.balance-value {
+  font-size: 1rem;
+}
+
+.balance-value {
+  font-weight: bold;
+}
+
+.details-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.detail-label,
+.detail-value {
+  margin: 0px;
+}
+
+.detail-value {
+  font-weight: bold;
+}

@@ -22,29 +22,23 @@ function Header({
   };
 
   return (
-    <header
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        padding: "1rem",
-      }}
-    >
+    <header className="header">
       <h1>Split Bill App</h1>
       <div>
         <select
           onChange={(e) => onSelectProject(e.target.value)}
           value={currentProjectName}
         >
-          <option value="">Select a project</option>
+          <option value=""></option>
           {projects.map((project) => (
             <option key={project.projectName} value={project.projectName}>
               {project.projectName}
             </option>
           ))}
         </select>
-        <button onClick={onAddProject}>New Project</button>
+        <button onClick={onAddProject}>Новый проект</button>
         <button onClick={handleDeleteProject} disabled={!currentProjectName}>
-          Delete Project
+          Удалить проект
         </button>
       </div>
     </header>

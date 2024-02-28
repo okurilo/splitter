@@ -3,17 +3,21 @@ import { Expense } from "../types";
 
 interface ExpensesTableProps {
   expenses: Expense[];
+  handleDeleteExpense: (index: number) => void;
 }
 
-const ExpensesTable: React.FC<ExpensesTableProps> = ({ expenses }) => {
+const ExpensesTable: React.FC<ExpensesTableProps> = ({
+  expenses,
+  handleDeleteExpense,
+}) => {
   return (
     <table>
       <thead>
         <tr>
-          <th>Title</th>
-          <th>Amount</th>
-          <th>Payer</th>
-          <th>Participants</th>
+          <th>Название</th>
+          <th>Стоимость</th>
+          <th>Оплатил</th>
+          <th>Участники</th>
         </tr>
       </thead>
       <tbody>
@@ -22,7 +26,13 @@ const ExpensesTable: React.FC<ExpensesTableProps> = ({ expenses }) => {
             <td>{expense.title}</td>
             <td>{expense.amount.toFixed(2)}</td>
             <td>{expense.payer}</td>
-            <td>{expense.participants.join(", ")}</td>
+            <td>{expense.participants.join(", ")}</td>{" "}
+            <td>
+              {/* Обратите внимание, что теперь мы передаем index в качестве аргумента */}
+              <button onClick={() => handleDeleteExpense(index)}>
+                Удалить
+              </button>
+            </td>
           </tr>
         ))}
       </tbody>

@@ -6,9 +6,13 @@ interface DataServiceInterface {
   setCurrentProject(projectName: string): void;
   getCurrentProject(): Project | undefined;
   deleteProject(projectName: string): void;
+  updateProject(projectName: string, updatedProjectData: Project): void;
 }
 
 class DataService implements DataServiceInterface {
+  updateProject(projectName: string, updatedProjectData: Project): void {
+    throw new Error("Method not implemented.");
+  }
   getProjects(): Project[] {
     throw new Error("Method not implemented.");
   }
@@ -65,6 +69,21 @@ class DataService implements DataServiceInterface {
     localStorage.setItem("projects", JSON.stringify(projects));
     if (localStorage.getItem("currentProject") === projectName) {
       localStorage.removeItem("currentProject");
+    }
+  }
+
+  static updateProject(projectName: string, updatedProjectData: Project): void {
+    const projects = DataService.getProjects();
+    const projectIndex = projects.findIndex(
+      (project) => project.projectName === projectName
+    );
+    if (projectIndex !== -1) {
+      // Обновляем данные проекта, сохраняя идентификатор и обновляя остальные данные
+      projects[projectIndex] = {
+        ...projects[projectIndex],
+        ...updatedProjectData,
+      };
+      localStorage.setItem("projects", JSON.stringify(projects));
     }
   }
 }
