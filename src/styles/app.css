@@ -3,6 +3,8 @@ body,
 html {
   margin: 0;
   padding: 0;
+  background-color: #f4f4f4;
+  color: #333333;
   font-family: "Arial", sans-serif;
 }
 
@@ -13,23 +15,65 @@ html {
 }
 
 input,
-select,
-button {
-  width: 100%;
+select {
   padding: 10px;
-  margin: 10px 0;
+  margin: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+header {
+  background-color: #f0f0f0;
+  padding: 10px;
+  text-align: center;
+}
+
+form {
+  margin: 20px auto;
+  width: 90%;
+  max-width: 400px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+h1,
+h2,
+h3 {
+  color: #5d1049;
+}
+
+button {
+  background-color: #eca400;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #c88a00;
 }
 
 table {
   width: 100%;
+  margin-top: 20px;
   border-collapse: collapse;
 }
 
-th,
-td {
+td,
+th {
   border: 1px solid #ddd;
   text-align: left;
   padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
 }
 
 th {
