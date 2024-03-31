@@ -1,8 +1,8 @@
 import React from "react";
-import { Expense, Participants } from "../types";
+import { Expense, Participants } from "../../types";
 import "./DebtsCalculator.css";
 
-const DebtsCalculator: React.FC<{
+export const DebtsCalculator: React.FC<{
   expenses: Expense[];
   participants: Participants;
 }> = ({ expenses, participants }) => {
@@ -89,5 +89,3 @@ const DebtsCalculator: React.FC<{
     </div>
   );
 };
-
-export default DebtsCalculator;

@@ -1,19 +1,24 @@
 import React, { useState } from "react";
-import { Expense, Participants, Project } from "../types";
+import { Expense, Project } from "../../types";
+import { useParticipantsSelection } from "../../hooks/useParticipantsSelection";
+import "./style.css";
 
-function ExpensesForm({
-  currentProject,
-  onAddExpense,
-}: {
+interface ExpensesFormProps {
   currentProject: Project;
   onAddExpense: (expense: Expense) => void;
-}) {
+}
+
+export const ExpensesForm: React.FC<ExpensesFormProps> = ({
+  currentProject,
+  onAddExpense,
+}) => {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState("");
   const [payer, setPayer] = useState("");
-  const [selectedParticipants, setSelectedParticipants] =
-    useState<Participants>([]);
-  const [customizeParticipants, setCustomizeParticipants] = useState(false); // Добавляем состояние для управления кастомизацией участников
+  const [customizeParticipants, setCustomizeParticipants] = useState(false);
+
+  const { selectedParticipants, toggleParticipantSelection } =
+    useParticipantsSelection(currentProject.participants);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -23,12 +28,13 @@ function ExpensesForm({
       payer,
       participants: customizeParticipants
         ? selectedParticipants
-        : currentProject.participants, // Проверяем, нужно ли использовать выбранных участников или всех участников проекта
+        : currentProject.participants,
     });
+    // Reset form fields after submission
     setTitle("");
     setAmount("");
     setPayer("");
-    setSelectedParticipants([]);
+    setCustomizeParticipants(false); // Reset customization option
   };
 
   return (
@@ -55,35 +61,30 @@ function ExpensesForm({
           </option>
         ))}
       </select>
-      {customizeParticipants && ( // Отображаем чекбокс для кастомизации участников, если он активирован
-        <div>
-          {currentProject.participants.map((participant, index) => (
+      <div className="customise-block">
+        <label>
+          <input
+            type="checkbox"
+            checked={customizeParticipants}
+            onChange={() => setCustomizeParticipants(!customizeParticipants)}
+          />
+          Настроить участников
+        </label>
+      </div>
+      <div>
+        {customizeParticipants &&
+          currentProject.participants.map((participant, index) => (
             <label key={index}>
               <input
                 type="checkbox"
                 checked={selectedParticipants.includes(participant)}
-                onChange={() => {
-                  const newSelected = selectedParticipants.includes(participant)
-                    ? selectedParticipants.filter((p) => p !== participant)
-                    : [...selectedParticipants, participant];
-                  setSelectedParticipants(newSelected);
-                }}
+                onChange={() => toggleParticipantSelection(participant)}
               />
               {participant}
             </label>
           ))}
-        </div>
-      )}
-      <button
-        type="button"
-        onClick={() => setCustomizeParticipants(!customizeParticipants)}
-      >
-        Настроить участников
-      </button>{" "}
-      {/* Кнопка для активации/деактивации кастомизации участников */}
+      </div>
       <button type="submit">Добавить трату</button>
     </form>
   );
-}
-
-export default ExpensesForm;
+};

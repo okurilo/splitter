@@ -1,6 +1,7 @@
 import React from "react";
-import { Project } from "../types";
-import DataService from "../services/DataService";
+import { Project } from "../../types";
+import DataService from "../../services/DataService";
+import "./style.css";
 
 type HeaderProps = {
   currentProjectName: string;
@@ -10,13 +11,13 @@ type HeaderProps = {
   onDeleteProject: DataService["deleteProject"];
 };
 
-function Header({
+export const Header = ({
   currentProjectName,
   projects,
   onSelectProject,
   onAddProject,
   onDeleteProject,
-}: HeaderProps) {
+}: HeaderProps) => {
   const handleDeleteProject = () => {
     onDeleteProject(currentProjectName);
   };
@@ -43,6 +44,4 @@ function Header({
       </div>
     </header>
   );
-}
-
-export default Header;
+};

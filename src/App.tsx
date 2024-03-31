@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import ProjectForm from "./components/ProjectForm";
-import ExpensesForm from "./components/ExpensesForm";
+import { ExpensesForm } from "./components/ExpensesForm";
 import ExpensesTable from "./components/ExpensesTable";
-import DebtsCalculator from "./components/DebtsCalculator";
+import { DebtsCalculator } from "./components/DebtsCalculator";
 import DebtsTable from "./components/DebtsTable"; // Импортируем DebtsTable
-import Header from "./components/Header";
+import { Header } from "./components/Header/Header";
 import DataService from "./services/DataService";
 import "./styles/app.css";
 import { Expense, Project } from "./types";

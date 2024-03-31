@@ -18,6 +18,7 @@ const ExpensesTable: React.FC<ExpensesTableProps> = ({
           <th>Стоимость</th>
           <th>Оплатил</th>
           <th>Участники</th>
+          <th>Действия</th>
         </tr>
       </thead>
       <tbody>
